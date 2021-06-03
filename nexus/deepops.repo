@@ -1,0 +1,88 @@
+[centos-base]
+name=CentOS-7 - Base
+baseurl=http://nexus:8081/repository/yum-centos/
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+
+[centos-updates]
+name=CentOS-7 - Updates
+baseurl=http://nexus:8081/repository/yum-centos-updates/
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+
+#additional packages that may be useful
+[centos-extras]
+name=CentOS-7 - Extras
+baseurl=http://nexus:8081/repository/yum-centos-extras/
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+
+#additional packages that extend functionality of existing packages
+[centosplus]
+name=CentOS-7 - Plus
+baseurl=http://nexus:8081/repository/yum-centosplus/
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+
+
+[cuda]
+name = NVIDIA CUDA YUM Repo
+baseurl = http://nexus:8081/repository/yum-cuda/
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/7fa2af80.pub
+
+[docker-ce-stable]
+name=Docker CE Stable - x86_64
+baseurl=http://nexus:8081/repository/yum-docker-ce-stable/
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/gpg
+
+[docker-engine]
+name=Docker-Engine Repository
+baseurl=http://nexus:8081/repository/yum-docker-engine/
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/gpg
+
+[epel]
+name = EPEL YUM repo
+baseurl = http://nexus:8081/repository/yum-epel/
+enabled=1
+gpgcheck=1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+
+
+[libnvidia-container]
+name=libnvidia-container
+baseurl=http://nexus:8081/repository/yum-libnvidia-container/
+enabled=1
+gpgcheck=1
+gpgkey = file:///etc/pki/rpm-gpg/gpgkey
+
+[nvidia-container-runtime]
+name=nvidia-container-runtime
+baseurl=http://nexus:8081/repository/yum-nvidia-container-runtime/
+enabled=1
+gpgcheck=1
+gpgkey = file:///etc/pki/rpm-gpg/gpgkey
+
+[nvidia-docker]
+name=nvidia-docker
+baseurl=http://nexus:8081/repository/yum-nvidia-docker/
+enabled=1
+gpgcheck=1
+gpgkey = file:///etc/pki/rpm-gpg/gpgkey
+
+[nvidia-ml]
+name = NVIDIA Machine Learning Repo
+baseurl = http://nexus:8081/repository/yum-nvidia-ml/
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/7fa2af80.pub
+
