@@ -8,6 +8,11 @@ curl -v --user 'admin:password123' --upload-file ./test.png http://nexus:8081/re
 List 
 
 # Misc download urls
+
+helm_version: "v3.4.1"
+cni_version: "v0.8.7"
+
+helm_download_url: "https://storage.googleapis.com/kubernetes-helm/helm-{{ helm_version }}-linux-amd64.tar.gz"
 docker_compose_url: "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-Linux-x86_64"
 ksonnet_url: "https://github.com/ksonnet/ksonnet/releases/download/v0.13.1/ks_0.13.1_linux_amd64.tar.gz"
 kubectl_url: "https://storage.googleapis.com/kubernetes-release/release/{{ kube_version }}/bin/linux/amd64/kubectl"
