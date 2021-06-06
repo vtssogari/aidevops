@@ -2,14 +2,14 @@
 # tasks file for download-static
 - name: Create a directory if it does not exist
   ansible.builtin.file:
-    path: "{{download_folder}}/"
+    path: "{{ download_folder }}/"
     state: directory
     mode: '0755'
 
 - name: Download helm
   get_url:  
     url:  "https://get.helm.sh/helm-{{ helm_version }}-linux-amd64.tar.gz"
-    dest: "{{download_folder}}/"
+    dest: "{{ download_folder }}/"
 - name: Push file to nexus
   uri:
     url: "{{ nexus_url }}/helm-{{ helm_version }}-linux-amd64.tar.gz"
@@ -26,7 +26,7 @@
 - name: Download docker_compose_url
   get_url:
     url:  "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-Linux-x86_64"
-    dest: "{{download_folder}}/"
+    dest: "{{ download_folder }}/"
 - name: Push file to nexus
   uri:
     url: "{{ nexus_url }}/docker-compose-Linux-x86_64"
@@ -43,7 +43,7 @@
 - name: Download ksonnet_url
   get_url:
     url:  "https://github.com/ksonnet/ksonnet/releases/download/v0.13.1/ks_0.13.1_linux_amd64.tar.gz"
-    dest: "{{download_folder}}/"
+    dest: "{{ download_folder }}/"
 - name: Push file to nexus
   uri:
     url: "{{ nexus_url }}/ks_0.13.1_linux_amd64.tar.gz"
@@ -60,7 +60,7 @@
 - name: Download kubectl_url
   get_url:
     url:  "https://dl.k8s.io/release/{{ kube_version }}/bin/linux/amd64/kubectl"
-    dest: "{{download_folder}}/"
+    dest: "{{ download_folder }}/"
 - name: Push file to nexus
   uri:
     url: "{{ nexus_url }}/kubectl"
@@ -77,7 +77,7 @@
 - name: Download kubeadm_url
   get_url:
     url:  "https://dl.k8s.io/release/{{ kube_version }}/bin/linux/amd64/kubeadm"
-    dest: "{{download_folder}}/"
+    dest: "{{ download_folder }}/"
 - name: Push file to nexus
   uri:
     url: "{{ nexus_url }}/kubeadm"
@@ -94,11 +94,11 @@
 #- name: Download hyperkube_url
 #  get_url:
 #    url:  "https://dl.k8s.io/release/{{ kube_version }}/bin/linux/amd64/hyperkube"
-#    dest: "{{download_folder}}/"
+#    dest: "{{ download_folder }}/"
 - name: Download nvidia_k8s_device_plugin_url
   get_url: 
     url:  "https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/1.0.0-beta4/nvidia-device-plugin.yml"
-    dest: "{{download_folder}}/"
+    dest: "{{ download_folder }}/"
 - name: Push file to nexus
   uri:
     url: "{{ nexus_url }}/nvidia-device-plugin.yml"
@@ -115,7 +115,7 @@
 - name: Download nvidia_docker_wrapper_url
   get_url:
     url:  "https://raw.githubusercontent.com/NVIDIA/nvidia-docker/master/nvidia-docker"
-    dest: "{{download_folder}}/"
+    dest: "{{ download_folder }}/"
 - name: Push file to nexus
   uri:
     url: "{{ nexus_url }}/nvidia-docker"
@@ -132,7 +132,7 @@
 - name: Download cni_download_url
   get_url:
     url:  "https://github.com/containernetworking/plugins/releases/download/{{ cni_version }}/cni-plugins-linux-amd64-{{ cni_version }}.tgz"
-    dest: "{{download_folder}}/"
+    dest: "{{ download_folder }}/"
 - name: Push file to nexus
   uri:
     url: "{{ nexus_url }}/cni-plugins-linux-amd64-{{ cni_version }}.tgz"
@@ -149,7 +149,7 @@
 - name: Download cni_download_url
   get_url:
     url:  "https://github.com/containernetworking/plugins/releases/download/{{ cni_version }}/cni-plugins-amd64-{{ cni_version }}.tgz"
-    dest: "{{download_folder}}/"
+    dest: "{{ download_folder }}/"
 - name: Push file to nexus
   uri:
     url: "{{ nexus_url }}/cni-plugins-amd64-{{ cni_version }}.tgz"

@@ -8,6 +8,7 @@
   ansible.builtin.copy:
     src: "{{ archived_folder }}/{{ item.tar_name }}.tar"
     dest: "{{ image_folder }}"
+    mode : '0755'
   loop: "{{ docker-images }}"
 
 - name: load images 
