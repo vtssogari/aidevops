@@ -146,3 +146,19 @@
     status_code:
       - 201    
 
+- name: Download cni_download_url
+  get_url:
+    url:  "https://github.com/containernetworking/plugins/releases/download/{{ cni_version }}/cni-plugins-amd64-{{ cni_version }}.tgz"
+    dest: "{{download_folder}}/"
+- name: Push file to nexus
+  uri:
+    url: "{{ nexus_url }}/cni-plugins-amd64-{{ cni_version }}.tgz"
+    method: PUT
+    src: "{{ download_folder }}/cni-plugins-amd64-{{ cni_version }}.tgz"
+    user: "{{ user }}"
+    password: "{{ password }}"
+    force_basic_auth: yes
+    headers:
+      Content-Type: application/octet-stream  
+    status_code:
+      - 201    

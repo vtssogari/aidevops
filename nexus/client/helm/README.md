@@ -6,7 +6,7 @@ Define URL for Remote storage :
 
 ex)
 	Name			URL
-        helm-google		https://kubernetes-charts.storage.googleapis.com
+    helm-google		https://kubernetes-charts.storage.googleapis.com
 	helm-stable          	https://charts.helm.sh/stable
 	helm-mumoshu         	https://mumoshu.github.io/charts
 	...

@@ -1,0 +1,52 @@
+- name : images
+  command : 
+    cmd: "docker pull {{ item.name }}:{{ item.version }}"
+  loop:
+      - { name : "nginx", version: "1.19"}
+      - { name : "registry", version: "2.7"}
+      - { name : "lachlanevenson/k8s-helm", version: "v3.4.1"}
+      - { name : "k8s.gcr.io/kube-proxy", version: "v1.18.9"}
+      - { name : "k8s.gcr.io/kube-controller-manager", version: "v1.18.9"}
+      - { name : "k8s.gcr.io/kube-apiserver", version: "v1.18.9"}
+      - { name : "k8s.gcr.io/kube-scheduler", version: "v1.18.9"}
+      - { name : "calico/node", version: "v3.15.2"}
+      - { name : "calico/cni", version: "v3.15.2"}
+      - { name : "calico/kube-controllers", version: "v3.15.2"}
+      - { name : "kubernetesui/dashboard", version: "v2.0.3"}
+      - { name : "k8s.gcr.io/cluster-proportional-autoscaler-amd64", version: "1.8.1"}
+      - { name : "kubernetesui/metrics-scraper", version: "v1.0.5"}
+      - { name : "quay.io/kubernetes_incubator/node-feature-discovery", version: "v0.6.0"}
+      - { name : "k8s.gcr.io/k8s-dns-node-cache", version: "1.15.13"}
+      - { name : "k8s.gcr.io/pause", version: "3.2"}
+      - { name : "coredns/coredns", version: "1.6.7"}
+      - { name : "quay.io/coreos/etcd", version: "v3.4.3"}
+      - { name : "quay.io/external_storage/nfs-client-provisioner", version: "v3.1.0-k8s1.11"}    
+
+- name: Create a directory if it does not exist
+  ansible.builtin.file:
+    path: "{{archived_folder}}"
+    state: directory
+    mode: '0755'
+
+- name: archive images
+  ansible.builtin.shell: "docker save -o {{ archived_folder }}/{{item.tar_name}}.tar {{ item.name }}:{{ item.version }}"
+  loop:
+    - {tar_name: "nginx",           name: "nginx", version: "1.19"}
+    - {tar_name: "registry",        name: "registry", version: "2.7"}
+    - {tar_name: "k8s-helm",        name: "lachlanevenson/k8s-helm", version: "v3.4.1"}
+    - {tar_name: "kube-proxy",      name: "k8s.gcr.io/kube-proxy", version: "v1.18.9"}
+    - {tar_name: "kube-controller-manager", name: "k8s.gcr.io/kube-controller-manager", version: "v1.18.9"}
+    - {tar_name: "kube-apiserver", name: "k8s.gcr.io/kube-apiserver", version: "v1.18.9"}
+    - {tar_name: "kube-scheduler", name: "k8s.gcr.io/kube-scheduler", version: "v1.18.9"}
+    - {tar_name: "node", name: "calico/node", version: "v3.15.2"}
+    - {tar_name: "cni", name: "calico/cni", version: "v3.15.2"}
+    - {tar_name: "kube-controllers", name: "calico/kube-controllers", version: "v3.15.2"}
+    - {tar_name: "dashboard", name: "kubernetesui/dashboard", version: "v2.0.3"}
+    - {tar_name: "cluster-proportional-autoscaler-amd64", name: "k8s.gcr.io/cluster-proportional-autoscaler-amd64", version: "1.8.1"}
+    - {tar_name: "metrics-scraper", name: "kubernetesui/metrics-scraper", version: "v1.0.5"}
+    - {tar_name: "node-feature-discovery", name: "quay.io/kubernetes_incubator/node-feature-discovery", version: "v0.6.0"}
+    - {tar_name: "k8s-dns-node-cache", name: "k8s.gcr.io/k8s-dns-node-cache", version: "1.15.13"}
+    - {tar_name: "pause", name: "k8s.gcr.io/pause", version: "3.2"}
+    - {tar_name: "coredns", name: "coredns/coredns", version: "1.6.7"}
+    - {tar_name: "etcd", name: "quay.io/coreos/etcd", version: "v3.4.3"}
+    - {tar_name: "nfs-client-provisioner", name: "quay.io/external_storage/nfs-client-provisioner", version: "v3.1.0-k8s1.11"}

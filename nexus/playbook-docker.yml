@@ -1,0 +1,16 @@
+---
+# This playbook uses the win_get_url module to download a simple HTML file for IIS
+- name: archive images
+  hosts: local
+  vars:
+    archived_folder: "/tmp/archived"
+  roles:
+    - docker-archive
+
+- name: deploy images
+  hosts: nodes
+  vars:
+    archived_folder: "/tmp/archived"
+    image_folder: "/tmp/images"
+  roles:
+    - docker-deploy    

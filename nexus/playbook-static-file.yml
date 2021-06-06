@@ -1,10 +1,11 @@
 ---
 # This playbook uses the win_get_url module to download a simple HTML file for IIS
 - name: Download and upload installation files to nexus
-  hosts: all 
+  hosts: nexus 
   vars: 
     helm_version: "v3.4.1"
     cni_version: "v0.8.7"
+
     kube_version: "v1.18.9"
     download_folder: /home/vtssogari/aidevops/nexus/downloads
     nexus_url: "http://nexus:8081/repository/http-hosted/"
