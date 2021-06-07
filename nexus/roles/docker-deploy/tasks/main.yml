@@ -9,8 +9,8 @@
     src: "{{ archived_folder }}/{{ item.tar_name }}.tar"
     dest: "{{ image_folder }}"
     mode : '0755'
-  loop: "{{ docker-images }}"
+  loop: "{{ docker_images }}"
 
 - name: load images 
   ansible.builtin.command: "docker load -i {{ image_folder }}/{{ item.tar_name }}.tar"
-  loop: "{{ docker-images }}"
+  loop: "{{ docker_images }}"

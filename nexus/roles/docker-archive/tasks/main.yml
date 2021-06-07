@@ -1,7 +1,7 @@
 - name: images
   command : 
     cmd: "docker pull {{ item.name }}:{{ item.version }}"
-  loop: "{{ docker-images }}"   
+  loop: "{{ docker_images }}"   
 
 - name: Create a directory if it does not exist
   ansible.builtin.file:
@@ -10,5 +10,6 @@
     mode: '0755'
 
 - name: archive images
-  ansible.builtin.shell: "docker save -o {{ archived_folder }}/{{ item.tar_name }}.tar {{ item.name }}:{{ item.version }}"
-  loop: "{{ docker-images }}"
+  command : 
+    cmd: "docker save -o {{ archived_folder }}/{{ item.tar_name }}.tar {{ item.name }}:{{ item.version }}"
+  loop: "{{ docker_images }}"

@@ -1,4 +1,4 @@
-docker-images:
+docker_images:
   - {tar_name: "nginx", name: "nginx", version: "1.19"}
   - {tar_name: "registry", name: "registry", version: "2.7"}
   - {tar_name: "k8s-helm", name: "lachlanevenson/k8s-helm", version: "v3.4.1"}
