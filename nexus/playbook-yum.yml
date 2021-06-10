@@ -1,8 +1,8 @@
 ---
 # This playbook uses the win_get_url module to download a simple HTML file for IIS
 - name: setup yum repos
-  hosts: nodes
+  hosts: yum
   vars: 
-    nexus_url_base: "http://nexus:8081"
+    nexus_url_base: "http://{{ nexus }}:8081"
   roles: 
     - yum

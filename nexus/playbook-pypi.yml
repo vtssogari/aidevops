@@ -1,0 +1,5 @@
+# This playbook uses the win_get_url module to download a simple HTML file for IIS
+- name: update pypi local
+  hosts: yum
+  roles:    
+    - pypi

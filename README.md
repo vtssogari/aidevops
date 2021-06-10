@@ -1,8 +1,21 @@
-# aidevops
+# AI Devops
 AI Platform Installation Automation 
 
 Scripts will prepare nexus offline for Kubenetes installations
 
+# Disable Subscription Manager 
+sudo subscription-manager config --rhsm.manage_repos=0
+sudo yum install -y docker-ce docker-ce-cli containerd.io
+sudo systemctl start docker 
+sudo systemctl enable docker 
+
+
+sudo tee /etc/docker/daemon.json <<EOF
+{
+  "registry-mirrors": ["http://192.168.1.214:8181"],
+  "insecure-registries" : ["192.168.1.214:8181"]
+}
+DOCKERCONFIG
 
 REPOSITORY                                         TAG       
 

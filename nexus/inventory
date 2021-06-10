@@ -1,12 +1,23 @@
 [all]
-nexus
-localhost
+nexus   ansible_host=192.168.1.214
+mgt     ansible_host=192.168.1.193
+kube    ansible_host=192.168.1.199
+cache   ansible_host=192.168.1.220
 
 [local]
 localhost 
 
-[nexus]
+[yum]
 nexus
+mgt
+kube
+cache
+
+[nexus]
+cache
+
+[management]
+mgt
 
 [nodes]
-node1
+kube

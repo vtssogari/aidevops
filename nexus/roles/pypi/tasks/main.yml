@@ -1,0 +1,13 @@
+---
+# tasks file for pypi
+
+- name: Create a directory if it does not exist
+  ansible.builtin.file:
+    path: "~/.config/pip"
+    state: directory
+    mode: '0755'
+
+- name: configuration for pypi repo
+  template:
+    src: pip.conf.j2
+    dest: ~/.config/pip/pip.conf

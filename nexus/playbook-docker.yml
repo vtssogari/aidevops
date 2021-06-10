@@ -1,20 +1,20 @@
 # This playbook uses the win_get_url module to download a simple HTML file for IIS
-- name: archive images
-  hosts: nexus
-  vars:
-    archived_folder: "/tmp/archived"
-    image_folder: "/tmp/images"    
-  roles:    
-    - docker-archive
+# - name: archive images
+#   hosts: localhost
+#   vars:
+#     archived_folder: "/tmp/archived"
+#     image_folder: "/tmp/images"    
+#   roles:    
+#     - docker-archive
 
 - name: deploy images
-  hosts: nodes
+  hosts: localhost
   vars:
     archived_folder: "/tmp/archived"
     image_folder: "/tmp/images"    
-  roles:    
+  roles:
     - docker-deploy
-
+    
 - name: clean up images
   hosts: nexus
   vars:
