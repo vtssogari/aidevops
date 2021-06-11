@@ -1,6 +1,6 @@
 - name: images
   command : 
-    cmd: "sudo docker pull {{ item.name }}:{{ item.version }}"
+    cmd: "sudo docker pull {{ item.repo }}/{{ item.name }}:{{ item.version }}"
   loop: "{{ docker_images }}"   
 
 - name: Create a directory if it does not exist
@@ -9,14 +9,9 @@
     state: directory
     mode: '0755'
 
-- name: tag images
-  command : 
-    cmd: "sudo docker tag {{ item.repo }}/{{ item.name }}:{{ item.version }} {{ item.name }}:{{ item.version }}"
-  loop: "{{ docker_images }}"
-
 - name: archive images
   command : 
-    cmd: "sudo docker save -o {{ archived_folder }}/{{ item.tar_name }}.tar {{ item.name }}:{{ item.version }}"
+    cmd: "sudo docker save -o {{ archived_folder }}/{{ item.tar_name }}.tar {{ item.repo }}/{{ item.name }}:{{ item.version }}"
   loop: "{{ docker_images }}"
 
 - file:

@@ -86,3 +86,9 @@ enabled=1
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/7fa2af80.pub
 
+[kubernetes]
+name = Kubernetes
+baseurl = {{ nexus_url_base }}/repository/yum-kubernetes/
+enabled=1
+gpgcheck=0
+

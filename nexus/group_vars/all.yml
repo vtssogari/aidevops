@@ -4,19 +4,27 @@ docker_images:
   - {tar_name: "nginx", name: "nginx", version: "1.19", repo: "docker.io"}
   - {tar_name: "registry", name: "registry", version: "2.7", repo: "docker.io"}
   - {tar_name: "k8s-helm", name: "lachlanevenson/k8s-helm", version: "v3.4.1", repo: "docker.io"}
-  - {tar_name: "coredns", name: "coredns/coredns", version: "1.6.7", repo: "docker.io"}
   - {tar_name: "node", name: "calico/node", version: "v3.15.2", repo: "docker.io"}
   - {tar_name: "cni", name: "calico/cni", version: "v3.15.2", repo: "docker.io"}
   - {tar_name: "kube-controllers", name: "calico/kube-controllers", version: "v3.15.2", repo: "docker.io"}
   - {tar_name: "dashboard", name: "kubernetesui/dashboard", version: "v2.0.3", repo: "docker.io"}
   - {tar_name: "metrics-scraper", name: "kubernetesui/metrics-scraper", version: "v1.0.5", repo: "docker.io"}
-  - {tar_name: "kube-proxy", name: "kube-proxy", version: "v1.18.9", repo: "k8s.gcr.io"}
-  - {tar_name: "kube-controller-manager", name: "kube-controller-manager", version: "v1.18.9", repo: "k8s.gcr.io"}
-  - {tar_name: "kube-apiserver", name: "kube-apiserver", version: "v1.18.9", repo: "k8s.gcr.io"}
-  - {tar_name: "kube-scheduler", name: "kube-scheduler", version: "v1.18.9", repo: "k8s.gcr.io"}
+  - {tar_name: "kube-apiserver", name: "kube-apiserver", version: "v1.21.1", repo: "k8s.gcr.io"}
+  - {tar_name: "kube-controller-manager", name: "kube-controller-manager", version: "v1.21.1", repo: "k8s.gcr.io"}
+  - {tar_name: "kube-scheduler", name: "kube-scheduler", version: "v1.21.1", repo: "k8s.gcr.io"}
+  - {tar_name: "kube-proxy", name: "kube-proxy", version: "v1.21.1", repo: "k8s.gcr.io"}
+  - {tar_name: "pause", name: "pause", version: "3.4.1", repo: "k8s.gcr.io"}
+  - {tar_name: "etcd", name: "etcd", version: "3.4.13-0", repo: "k8s.gcr.io"}
+  - {tar_name: "coredns", name: "coredns/coredns", version: "v1.8.0", repo: "k8s.gcr.io"}
   - {tar_name: "cluster-proportional-autoscaler-amd64", name: "cluster-proportional-autoscaler-amd64", version: "1.8.1", repo: "k8s.gcr.io"}
   - {tar_name: "k8s-dns-node-cache", name: "k8s-dns-node-cache", version: "1.15.13", repo: "k8s.gcr.io"}
-  - {tar_name: "pause", name: "pause", version: "3.2", repo: "k8s.gcr.io"}
   - {tar_name: "node-feature-discovery", name: "kubernetes_incubator/node-feature-discovery", version: "v0.6.0", repo: "quay.io"}
-  - {tar_name: "etcd", name: "coreos/etcd", version: "v3.4.3", repo: "quay.io"}
   - {tar_name: "nfs-client-provisioner", name: "external_storage/nfs-client-provisioner", version: "v3.1.0-k8s1.11", repo: "quay.io"}
+
+#k8s.gcr.io/kube-apiserver:v1.21.1
+#k8s.gcr.io/kube-controller-manager:v1.21.1
+#k8s.gcr.io/kube-scheduler:v1.21.1
+#k8s.gcr.io/kube-proxy:v1.21.1
+#k8s.gcr.io/pause:3.4.1
+#k8s.gcr.io/etcd:3.4.13-0
+#k8s.gcr.io/coredns/coredns:v1.8.0

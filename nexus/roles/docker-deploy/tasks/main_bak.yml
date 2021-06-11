@@ -1,0 +1,15 @@
+# docker tag ubuntu:16.04 localhost:5000/my-ubuntu
+- name: pull images
+  command : 
+    cmd: "sudo docker pull {{ item.repo }}/{{ item.name }}:{{ item.version }}"
+  loop: "{{ docker_images }}" 
+
+
+- name: tag images 
+  command: "docker tag {{ item.repo }}/{{ item.name }}:{{ item.version }} {{ nexus }}:8181/{{ item.name }}:{{ item.version }}"    
+  loop: "{{ docker_images }}"
+
+- name: push images 
+  command: "docker push {{ nexus }}:8181/{{ item.name }}:{{ item.version }}"    
+  loop: "{{ docker_images }}"
+
