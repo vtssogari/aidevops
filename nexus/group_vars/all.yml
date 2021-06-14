@@ -44,12 +44,3 @@ docker_images:
 #k8s.gcr.io/etcd:3.4.13-0
 #k8s.gcr.io/coredns/coredns:v1.8.0
 
-
-1. Gather K8s dependencies and transfer it to Test env. 
-2. Install K8s and Dashboard 
-3. Deploy simple application 
-
-4. NFS configuration 
-4. Deploy Dashboard & Grafana Promethus
-5. Deploy ELK 
-6. Deploy filebeat for OSAR 
