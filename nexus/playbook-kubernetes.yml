@@ -1,0 +1,22 @@
+---
+- name: setup yum repos
+  hosts: yum
+  vars: 
+    nexus_url_base: "http://{{ nexus }}:8081"
+  roles: 
+    - yum
+
+- name: os config
+  hosts: nodes
+  vars: 
+  roles: 
+    - bootstrap
+
+- name: Install Kubernetes packages.
+  package:
+    name: "{{ item.name | default(item) }}"
+    state: "{{ item.state | default('present') }}"
+  notify: restart kubelet
+  with_items: "{{ kubernetes_packages }}"
+
+- include_tasks: sysctl-setup.yml

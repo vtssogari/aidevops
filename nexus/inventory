@@ -24,6 +24,6 @@ kube2
 [management]
 mgt
 
-[nodes]
+[workers] 
 kube1
 kube2
