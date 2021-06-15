@@ -12,4 +12,16 @@
           enabled=1
           gpgcheck=0
           {% endfor %}
-  become: yes 
+  become: yes
+- name: Template a file to yum repos
+  copy:    
+    dest: /etc/yum.repos.d/os.repo
+    content: |
+          {% for item in yum_repos %}
+          [{{ item.name }}]
+          name={{ item.name }}
+          baseurl={{ nexus_url_base }}/repository/{{ item.name }}/
+          enabled=1
+          gpgcheck=0
+          {% endfor %}
+  become: yes   

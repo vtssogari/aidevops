@@ -52,26 +52,18 @@ repository.createPyPiGroup('python-repo', ['pypi-proxy']); \n
 log.info('Script python-repo completed successfully'); \n
 
 // setup Yum Proxy repos \n
-repository.createYumProxy('yum-docker-ce-stable', 'https://download.docker.com/linux/centos/7/x86_64/stable'); \n
-
-repository.createYumProxy('yum-epel', 'https://dl.fedoraproject.org/pub/epel/7/x86_64/'); \n
-
+repository.createYumProxy('yum-docker-ce-stable', 'https://download.docker.com/linux/centos/8/x86_64/stable/'); \n
+repository.createYumProxy('yum-epel', 'https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64/'); \n
 repository.createYumProxy('yum-kubernetes', 'https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64'); \n
+repository.createYumProxy('yum-cuda', 'https://developer.download.nvidia.com/compute/cuda/repos/rhel8/x86_64/'); \n
+repository.createYumProxy('yum-libnvidia-container', 'https://nvidia.github.io/libnvidia-container/centos8/x86_64'); \n
+repository.createYumProxy('yum-nvidia-container-runtime', 'https://nvidia.github.io/nvidia-container-runtime/centos8/x86_64'); \n
+repository.createYumProxy('yum-nvidia-docker', 'https://nvidia.github.io/nvidia-docker/centos8/x86_64'); \n
+repository.createYumProxy('yum-nvidia-ml', 'https://developer.download.nvidia.com/compute/machine-learning/repos/rhel8/x86_64/'); \n
 
-repository.createYumProxy('yum-cuda', 'https://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/'); \n
-
-repository.createYumProxy('yum-libnvidia-container', 'https://nvidia.github.io/libnvidia-container/centos7/x86_64'); \n
-
-repository.createYumProxy('yum-nvidia-container-runtime', 'https://nvidia.github.io/nvidia-container-runtime/centos7/x86_64'); \n
-
-repository.createYumProxy('yum-nvidia-dgx-7', 'https://international.download.nvidia.com/dgx/repos/rhel7/'); \n
-
-repository.createYumProxy('yum-nvidia-dgx-7-updates', 'https://international.download.nvidia.com/dgx/repos/rhel7-updates/'); \n
-
-repository.createYumProxy('yum-nvidia-docker', 'https://nvidia.github.io/nvidia-docker/centos7/x86_64'); \n
-
-repository.createYumProxy('yum-nvidia-ml', 'https://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/'); \n
-
+repository.createYumProxy('yum-centos', 'http://mirror.vtti.vt.edu/centos/8/BaseOS/x86_64/'); \n
+repository.createYumProxy('yum-centos-extras', 'http://mirror.vtti.vt.edu/centos/8/extras/x86_64/'); \n
+repository.createYumProxy('yum-centosplus', 'http://mirror.vtti.vt.edu/centos/8/centosplus/x86_64/'); \n
 
 log.info('Script yum proxy repo completed successfully'); \n
 ",

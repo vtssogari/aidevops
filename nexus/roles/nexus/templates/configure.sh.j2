@@ -54,7 +54,10 @@ log.info('Script python-repo completed successfully'); \n
 // setup Yum Proxy repos \n
 {% for item in yum_kubernetes_repos %}
 repository.createYumProxy('{{ item.name }}', '{{ item.url }}'); \n
+{% endfor %}
 
+{% for item in yum_os_repos %}
+repository.createYumProxy('{{ item.name }}', '{{ item.url }}'); \n
 {% endfor %}
 
 log.info('Script yum proxy repo completed successfully'); \n
