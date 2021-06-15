@@ -16,6 +16,14 @@ tar -cvzf nexus_data.tgz /data
 ./nexus/scripts/setup.sh
 tar -xvzf nexus_data.tgz 
 
+## downloading static installation files 
+
+## Set up node for offline installation
+
+ansible-playbook -i inventory playbook-boostrap.yml
+ansible-playbook -i inventory playbook-yum.yml
+ansible-playbook -i inventory playbook-docker.yml
+ansible-playbook -i inventory playbook-pypi.yml
 
 
 # add default gate way - flannel is failing because of the default gateway is not defined
@@ -65,10 +73,3 @@ sudo subscription-manager config --rhsm.manage_repos=0
 sudo yum install -y docker-ce docker-ce-cli containerd.io
 sudo systemctl start docker 
 sudo systemctl enable docker 
-
-
-sudo tee /etc/docker/daemon.json <<EOF
-{
-  "registry-mirrors": ["http://192.168.1.214:8181"],
-  "insecure-registries" : ["192.168.1.214:8181"]
-}

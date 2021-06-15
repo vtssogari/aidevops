@@ -10,29 +10,38 @@ kubernetes_packages:
   - name: kubernetes-cni
     state: present
 
+binary_files: 
+  - { file_name: "helm-v3.0.0-linux-amd64.tar.gz",  url: "https://get.helm.sh/helm-v3.0.0-linux-amd64.tar.gz", directory: ""  }
+  - { file_name: "nvidia-device-plugin.yml",        url: "https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/1.0.0-beta4/nvidia-device-plugin.yml", directory: "/NVIDIA/k8s-device-plugin/1.0.0-beta4" }
+  - { file_name: "nvidia-docker",                   url: "https://raw.githubusercontent.com/NVIDIA/nvidia-docker/master/nvidia-docker", directory: "/NVIDIA/nvidia-docker/master" }
+  - { file_name: "deploy.yaml",                     url: "https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.47.0/deploy/static/provider/baremetal/deploy.yaml", directory: "/kubernetes/ingress-nginx/controller-v0.47.0/deploy/static/provider/baremetal" }
+  - { file_name: "kube-flannel.yml",                url: "https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml", directory: "/coreos/flannel/master/Documentation/" }
+
 docker_images:
-  - {tar_name: "nginx", name: "nginx", version: "1.19", repo: "docker.io"}
-  - {tar_name: "registry", name: "registry", version: "2.7", repo: "docker.io"}
-  - {tar_name: "k8s-helm", name: "lachlanevenson/k8s-helm", version: "v3.4.1", repo: "docker.io"}
-  - {tar_name: "node", name: "calico/node", version: "v3.15.2", repo: "docker.io"}
-  - {tar_name: "cni", name: "calico/cni", version: "v3.15.2", repo: "docker.io"}
-  - {tar_name: "kube-controllers", name: "calico/kube-controllers", version: "v3.15.2", repo: "docker.io"}
   - {tar_name: "dashboard", name: "kubernetesui/dashboard", version: "v2.2.0", repo: "docker.io"}
   - {tar_name: "metrics-scraper", name: "kubernetesui/metrics-scraper", version: "v1.0.6", repo: "docker.io"}
-  - {tar_name: "kube-apiserver", name: "kube-apiserver", version: "v1.21.1", repo: "k8s.gcr.io"}
-  - {tar_name: "kube-controller-manager", name: "kube-controller-manager", version: "v1.21.1", repo: "k8s.gcr.io"}
-  - {tar_name: "kube-scheduler", name: "kube-scheduler", version: "v1.21.1", repo: "k8s.gcr.io"}
-  - {tar_name: "kube-proxy", name: "kube-proxy", version: "v1.21.1", repo: "k8s.gcr.io"}
-  - {tar_name: "pause", name: "pause", version: "3.4.1", repo: "k8s.gcr.io"}
-  - {tar_name: "etcd", name: "etcd", version: "3.4.13-0", repo: "k8s.gcr.io"}
-  - {tar_name: "coredns", name: "coredns/coredns", version: "v1.8.0", repo: "k8s.gcr.io"}
-  - {tar_name: "cluster-proportional-autoscaler-amd64", name: "cluster-proportional-autoscaler-amd64", version: "1.8.1", repo: "k8s.gcr.io"}
-  - {tar_name: "k8s-dns-node-cache", name: "k8s-dns-node-cache", version: "1.15.13", repo: "k8s.gcr.io"}
-  - {tar_name: "node-feature-discovery", name: "kubernetes_incubator/node-feature-discovery", version: "v0.6.0", repo: "quay.io"}
-  - {tar_name: "nfs-client-provisioner", name: "external_storage/nfs-client-provisioner", version: "v3.1.0-k8s1.11", repo: "quay.io"}
   - {tar_name: "flannel", name: "coreos/flannel", version: "v0.14.0", repo: "quay.io"}
   - {tar_name: "controller", name: "ingress-nginx/controller", version: "v0.46.0", repo: "k8s.gcr.io"}
   - {tar_name: "kube-webhook-certgen", name: "jettech/kube-webhook-certgen", version: "v1.5.1", repo: "docker.io"}
+
+  # - {tar_name: "registry", name: "registry", version: "2.7", repo: "docker.io"}
+  # - {tar_name: "k8s-helm", name: "lachlanevenson/k8s-helm", version: "v3.4.1", repo: "docker.io"}
+  # - {tar_name: "node", name: "calico/node", version: "v3.15.2", repo: "docker.io"}
+  # - {tar_name: "cni", name: "calico/cni", version: "v3.15.2", repo: "docker.io"}
+  # - {tar_name: "kube-controllers", name: "calico/kube-controllers", version: "v3.15.2", repo: "docker.io"}  
+  # - {tar_name: "kube-apiserver", name: "kube-apiserver", version: "v1.21.1", repo: "k8s.gcr.io"}
+  # - {tar_name: "kube-controller-manager", name: "kube-controller-manager", version: "v1.21.1", repo: "k8s.gcr.io"}
+  # - {tar_name: "kube-scheduler", name: "kube-scheduler", version: "v1.21.1", repo: "k8s.gcr.io"}
+  # - {tar_name: "kube-proxy", name: "kube-proxy", version: "v1.21.1", repo: "k8s.gcr.io"}
+  # - {tar_name: "pause", name: "pause", version: "3.4.1", repo: "k8s.gcr.io"}
+  # - {tar_name: "etcd", name: "etcd", version: "3.4.13-0", repo: "k8s.gcr.io"}
+  # - {tar_name: "coredns", name: "coredns/coredns", version: "v1.8.0", repo: "k8s.gcr.io"}
+  # - {tar_name: "cluster-proportional-autoscaler-amd64", name: "cluster-proportional-autoscaler-amd64", version: "1.8.1", repo: "k8s.gcr.io"}
+  # - {tar_name: "k8s-dns-node-cache", name: "k8s-dns-node-cache", version: "1.15.13", repo: "k8s.gcr.io"}
+  # - {tar_name: "node-feature-discovery", name: "kubernetes_incubator/node-feature-discovery", version: "v0.6.0", repo: "quay.io"}
+  # - {tar_name: "nfs-client-provisioner", name: "external_storage/nfs-client-provisioner", version: "v3.1.0-k8s1.11", repo: "quay.io"}
+
+
 
 
 #quay.io/coreos/flannel:v0.14.0
