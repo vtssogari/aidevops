@@ -3,31 +3,37 @@ AI Platform Installation Automation
 
 ## Nexus Server Setup
 Scripts will prepare nexus offline for Kubenetes installations
-
+```
 ./nexus/scripts/setup.sh
 ./nexus/scripts/configure.sh [password here]
-
+```
 ## Nexus offline Server Setup
 
 - create the tar /data folder
+```
 tar -cvzf nexus_data.tgz /data 
-
+```
 - from offline server run following 
+```
 ./nexus/scripts/setup.sh
 tar -xvzf nexus_data.tgz 
+```
+## Downloading static installation files 
 
-## downloading static installation files 
+### Set up node for offline installation
 
-## Set up node for offline installation
+* update group_vars for nexus ip address first
 
-ansible-playbook -i inventory playbook-boostrap.yml
+```
+ansible-playbook -i inventory playbook-bootstrap.yml
 ansible-playbook -i inventory playbook-yum.yml
 ansible-playbook -i inventory playbook-docker.yml
 ansible-playbook -i inventory playbook-pypi.yml
+```
 
+## add default gate way - flannel is failing because of the default gateway is not defined
 
-# add default gate way - flannel is failing because of the default gateway is not defined
-
+```
 [root@rhel7 ~]# cat /etc/sysconfig/network
 GATEWAY="10.1.1.1"
 [root@rhel7 ~]# systemctl restart network
@@ -35,15 +41,14 @@ GATEWAY="10.1.1.1"
         default          10.1.1.1                   static          enp0s3 
         default        unreachable                   kernel              lo unspec
         default        unreachable                   kernel    
+```
 
-
-
-# nginx controller
+## nginx controller
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.47.0/deploy/static/provider/baremetal/deploy.yaml
 
 kubectl apply -f http://nexus:8081/repository/http-hosted/kubernetes/ingress-nginx/controller-v0.47.0/deploy/static/provider/cloud/deploy.yaml
 
-
+##
 
 sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address=192.168.1.193
 
@@ -68,8 +73,10 @@ Then you can join any number of worker nodes by running the following on each as
 sudo kubeadm join 192.168.1.193:6443 --token xcf0du.mxtapu52ck85aaaw --discovery-token-ca-cert-hash sha256:1c6a9aa58b286bb483276ac893daf29c3f1ab8ab926dc02a30853189ec37bb0a
 
 
-# Disable Subscription Manager 
+# Disable Subscription Manager and install docker 
+```
 sudo subscription-manager config --rhsm.manage_repos=0
 sudo yum install -y docker-ce docker-ce-cli containerd.io
 sudo systemctl start docker 
 sudo systemctl enable docker 
+```
