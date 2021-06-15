@@ -13,5 +13,6 @@
   become: yes
 
 - name: load images 
-  ansible.builtin.command: "sudo docker load -i {{ image_folder }}/{{ item.tar_name }}.tar"
+  command: 
+    cmd: "docker load -i {{ image_folder }}/{{ item.tar_name }}.tar"
   loop: "{{ docker_images }}"
