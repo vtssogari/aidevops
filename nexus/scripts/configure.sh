@@ -52,6 +52,12 @@ repository.createPyPiGroup('python-repo', ['pypi-proxy']); \n
 log.info('Script python-repo completed successfully'); \n
 
 // setup Yum Proxy repos \n
+repository.createYumProxy('yum-centos', 'http://mirror.vtti.vt.edu/centos/7.9.2009/os/x86_64/', BlobStoreManager.DEFAULT_BLOBSTORE_NAME, true); \n
+repository.createYumProxy('yum-centos-extras', 'http://mirror.es.its.nyu.edu/centos/7.9.2009/extras/x86_64/', BlobStoreManager.DEFAULT_BLOBSTORE_NAME, true); \n
+repository.createYumProxy('yum-centos-updates', 'http://mirror.vtti.vt.edu/centos/7.9.2009/updates/x86_64/', BlobStoreManager.DEFAULT_BLOBSTORE_NAME, true); \n
+repository.createYumProxy('yum-centosplus', 'http://mirror.cs.vt.edu/pub/CentOS/7.9.2009/centosplus/x86_64/', BlobStoreManager.DEFAULT_BLOBSTORE_NAME, true); \n
+repository.createYumProxy('yum-cuda', 'https://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/', BlobStoreManager.DEFAULT_BLOBSTORE_NAME, true); \n
+repository.createYumProxy('yum-docker-ce-stable', 'https://download.docker.com/linux/centos/7/x86_64/stable', BlobStoreManager.DEFAULT_BLOBSTORE_NAME, true); \n
 repository.createYumProxy('yum-epel', 'https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64/'); \n
 repository.createYumProxy('yum-kubernetes', 'https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64'); \n
 repository.createYumProxy('yum-libnvidia-container', 'https://nvidia.github.io/libnvidia-container/centos7/x86_64'); \n
