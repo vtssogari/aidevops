@@ -3,6 +3,8 @@
 TAG=3.28.1
 DATA=/data/nexus-data
 
+sudo rm -rf ${DATA}
+
 docker stop --time=120 nexus || true
 docker rm -f nexus|| true
 

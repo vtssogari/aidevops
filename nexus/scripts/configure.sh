@@ -3,9 +3,9 @@
 set -x
 BASE_URL=http://localhost:8081
 GROOVY_SCRIPT=/tmp/docker-script.json
-SCRIPT_NAME=dockerRepositories
+SCRIPT_NAME=initialRepositories4
 USER=admin
-DEFAULT_PASSWORD=admin123 # do not change - required for boot up
+DEFAULT_PASSWORD=$1 #admin123 # do not change - required for boot up
 PASSWORD=$1 # set this password to what you want it to be
 EMAIL=admin@fda.gov 
 
@@ -35,37 +35,37 @@ repository.createDockerHosted('docker-internal', null, null) \n
 
 // create proxy repo of Docker Hub and enable v1 to get search to work \n
 // no ports since access is only indirectly via group \n
-repository.createDockerProxy('docker-hub','https://registry-1.docker.io', 'HUB',null,null,null,BlobStoreManager.DEFAULT_BLOBSTORE_NAME,true,true); \n
+repository.createDockerProxy('docker-hub','https://registry-1.docker.io', 'HUB',null,null,null); \n
 
 // create group and allow access via https \n
 def groupMembers = ['docker-hub', 'docker-internal'] \n
-repository.createDockerGroup('docker-all', 8181, null, groupMembers, true, BlobStoreManager.DEFAULT_BLOBSTORE_NAME, false); \n
+repository.createDockerGroup('docker-all', 8181, null, groupMembers); \n
 log.info('Script dockerRepositories completed successfully'); \n
 
 // setup http server \n
-repository.createRawHosted('http-hosted', BlobStoreManager.DEFAULT_BLOBSTORE_NAME,  true,  WritePolicy.ALLOW); \n
+repository.createRawHosted('http-hosted'); \n
 log.info('Script http-hosted completed successfully'); \n
 
 // setup pypi repo \n
-repository.createPyPiProxy('pypi-proxy', 'https://pypi.org', BlobStoreManager.DEFAULT_BLOBSTORE_NAME, true); \n
-repository.createPyPiGroup('python-repo', ['pypi-proxy'], BlobStoreManager.DEFAULT_BLOBSTORE_NAME); \n
+repository.createPyPiProxy('pypi-proxy', 'https://pypi.org'); \n
+repository.createPyPiGroup('python-repo', ['pypi-proxy']); \n
 log.info('Script python-repo completed successfully'); \n
 
 // setup Yum Proxy repos \n
-repository.createYumProxy('yum-centos', 'http://mirror.vtti.vt.edu/centos/7.9.2009/os/x86_64/', BlobStoreManager.DEFAULT_BLOBSTORE_NAME, true); \n
-repository.createYumProxy('yum-centos-extras', 'http://mirror.es.its.nyu.edu/centos/7.9.2009/extras/x86_64/', BlobStoreManager.DEFAULT_BLOBSTORE_NAME, true); \n
-repository.createYumProxy('yum-centos-updates', 'http://mirror.vtti.vt.edu/centos/7.9.2009/updates/x86_64/', BlobStoreManager.DEFAULT_BLOBSTORE_NAME, true); \n
-repository.createYumProxy('yum-centosplus', 'http://mirror.cs.vt.edu/pub/CentOS/7.9.2009/centosplus/x86_64/', BlobStoreManager.DEFAULT_BLOBSTORE_NAME, true); \n
-repository.createYumProxy('yum-cuda', 'https://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/', BlobStoreManager.DEFAULT_BLOBSTORE_NAME, true); \n
-repository.createYumProxy('yum-docker-ce-stable', 'https://download.docker.com/linux/centos/7/x86_64/stable', BlobStoreManager.DEFAULT_BLOBSTORE_NAME, true); \n
-repository.createYumProxy('yum-epel', 'https://dl.fedoraproject.org/pub/epel/7/x86_64/', BlobStoreManager.DEFAULT_BLOBSTORE_NAME, true); \n
-repository.createYumProxy('yum-kubernetes', 'https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64', BlobStoreManager.DEFAULT_BLOBSTORE_NAME, true); \n
-repository.createYumProxy('yum-libnvidia-container', 'https://nvidia.github.io/libnvidia-container/centos7/x86_64', BlobStoreManager.DEFAULT_BLOBSTORE_NAME, true); \n
-repository.createYumProxy('yum-nvidia-container-runtime', 'https://nvidia.github.io/nvidia-container-runtime/centos7/x86_64', BlobStoreManager.DEFAULT_BLOBSTORE_NAME, true); \n
-repository.createYumProxy('yum-nvidia-dgx-7', 'https://international.download.nvidia.com/dgx/repos/rhel7/', BlobStoreManager.DEFAULT_BLOBSTORE_NAME, true); \n
-repository.createYumProxy('yum-nvidia-dgx-7-updates', 'https://international.download.nvidia.com/dgx/repos/rhel7-updates/', BlobStoreManager.DEFAULT_BLOBSTORE_NAME, true); \n
-repository.createYumProxy('yum-nvidia-docker', 'https://nvidia.github.io/nvidia-docker/centos7/x86_64', BlobStoreManager.DEFAULT_BLOBSTORE_NAME, true); \n
-repository.createYumProxy('yum-nvidia-ml', 'https://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/', BlobStoreManager.DEFAULT_BLOBSTORE_NAME, true); \n 
+repository.createYumProxy('yum-centos', 'http://mirror.vtti.vt.edu/centos/7.9.2009/os/x86_64/'); \n
+repository.createYumProxy('yum-centos-extras', 'http://mirror.es.its.nyu.edu/centos/7.9.2009/extras/x86_64/'); \n
+repository.createYumProxy('yum-centos-updates', 'http://mirror.vtti.vt.edu/centos/7.9.2009/updates/x86_64/'); \n
+repository.createYumProxy('yum-centosplus', 'http://mirror.cs.vt.edu/pub/CentOS/7.9.2009/centosplus/x86_64/'); \n
+repository.createYumProxy('yum-cuda', 'https://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/'); \n
+repository.createYumProxy('yum-docker-ce-stable', 'https://download.docker.com/linux/centos/7/x86_64/stable'); \n
+repository.createYumProxy('yum-epel', 'https://dl.fedoraproject.org/pub/epel/7/x86_64/'); \n
+repository.createYumProxy('yum-kubernetes', 'https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64'); \n
+repository.createYumProxy('yum-libnvidia-container', 'https://nvidia.github.io/libnvidia-container/centos7/x86_64'); \n
+repository.createYumProxy('yum-nvidia-container-runtime', 'https://nvidia.github.io/nvidia-container-runtime/centos7/x86_64'); \n
+repository.createYumProxy('yum-nvidia-dgx-7', 'https://international.download.nvidia.com/dgx/repos/rhel7/'); \n
+repository.createYumProxy('yum-nvidia-dgx-7-updates', 'https://international.download.nvidia.com/dgx/repos/rhel7-updates/'); \n
+repository.createYumProxy('yum-nvidia-docker', 'https://nvidia.github.io/nvidia-docker/centos7/x86_64'); \n
+repository.createYumProxy('yum-nvidia-ml', 'https://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/'); \n 
 log.info('Script yum proxy repo completed successfully'); \n
 ",
 "type": "groovy"
