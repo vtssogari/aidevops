@@ -18,11 +18,10 @@ tar -cvzf nexus_data.tgz /data
 ./nexus/scripts/setup.sh
 tar -xvzf nexus_data.tgz 
 ```
-## Downloading static installation files 
+### Prepare kubernetes nodes for offline installation
 
-### Set up node for offline installation
-
-* update group_vars for nexus ip address first
+* update group_vars for nexus ip address first 
+* then run these scripts from ansible master
 
 ```
 ansible-playbook -i inventory playbook-bootstrap.yml

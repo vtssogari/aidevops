@@ -1,18 +1,15 @@
 ---
 # tasks file for yum
-- name: Copy a new gpg files
-  ansible.builtin.copy:
-    src: "{{role_path}}/files/{{ item }}"
-    dest: "/etc/pki/rpm-gpg/"
-  with_items:
-      - "7fa2af80.pub"
-      - "gpg"
-      - "gpgkey"
-      - "RPM-GPG-KEY-CentOS-7"
-  become: yes
-  
+
 - name: Template a file to yum repos
-  ansible.builtin.template:
-    src: deepops.repo.j2
-    dest: /etc/yum.repos.d/deepops.repo
-  become: yes
+  copy:    
+    dest: /etc/yum.repos.d/kubernetes.repo
+    content: |
+          {% for item in yum_kubernetes_repos %}
+          [{{ item.name }}]
+          name={{ item.name }}
+          baseurl={{ nexus_url_base }}/repository/{{ item.name }}/
+          enabled=1
+          gpgcheck=0
+          {% endfor %}
+  become: yes 

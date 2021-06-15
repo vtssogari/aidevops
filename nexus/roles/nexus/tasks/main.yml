@@ -1,0 +1,6 @@
+---
+# tasks file for nexus
+- name: create configure script and execute
+  template:
+    src: pip.conf.j2
+    dest: ~/.config/pip/pip.conf

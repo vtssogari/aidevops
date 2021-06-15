@@ -1,4 +1,4 @@
-nexus: 192.168.56.108
+nexus: 192.168.56.109
 
 kubernetes_packages:
   - name: kubelet-{{ kubernetes_version_rhel_package }}-0
@@ -23,6 +23,31 @@ docker_images:
   - {tar_name: "flannel", name: "coreos/flannel", version: "v0.14.0", repo: "quay.io"}
   - {tar_name: "controller", name: "ingress-nginx/controller", version: "v0.46.0", repo: "k8s.gcr.io"}
   - {tar_name: "kube-webhook-certgen", name: "jettech/kube-webhook-certgen", version: "v1.5.1", repo: "docker.io"}
+
+yum_centos7_repos:
+  - {name: 'yum-centos', url: 'http://mirror.vtti.vt.edu/centos/7.9.2009/os/x86_64/'}
+  - {name: 'yum-centos-extras', url: 'http://mirror.es.its.nyu.edu/centos/7.9.2009/extras/x86_64/'}
+  - {name: 'yum-centos-updates', url: 'http://mirror.vtti.vt.edu/centos/7.9.2009/updates/x86_64/'}
+  - {name: 'yum-centosplus', url: 'http://mirror.cs.vt.edu/pub/CentOS/7.9.2009/centosplus/x86_64/'}
+  
+yum_centos8_repos:
+  - {name: 'yum-centos', url: 'http://mirror.vtti.vt.edu/centos/7.9.2009/os/x86_64/'}
+  - {name: 'yum-centos-extras', url: 'http://mirror.es.its.nyu.edu/centos/7.9.2009/extras/x86_64/'}
+  - {name: 'yum-centos-updates', url: 'http://mirror.vtti.vt.edu/centos/7.9.2009/updates/x86_64/'}
+  - {name: 'yum-centosplus', url: 'http://mirror.cs.vt.edu/pub/CentOS/7.9.2009/centosplus/x86_64/'}
+  
+yum_kubernetes_repos:
+  - {name: 'yum-cuda', url: 'https://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/'}
+  - {name: 'yum-docker-ce-stable', url: 'https://download.docker.com/linux/centos/7/x86_64/stable'}
+  - {name: 'yum-epel', url: 'https://dl.fedoraproject.org/pub/epel/7/x86_64/'}
+  - {name: 'yum-kubernetes', url: 'https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64', base: '/yum/repos/kubernetes-el7-x86_64', gpg: ''}
+  - {name: 'yum-libnvidia-container', url: 'https://nvidia.github.io/libnvidia-container/centos7/x86_64', base: '/libnvidia-container/centos7/x86_64', gpg: ''}
+  - {name: 'yum-nvidia-container-runtime', url: 'https://nvidia.github.io/nvidia-container-runtime/centos7/x86_64', base: '/nvidia-container-runtime/centos7/x86_64', gpg: ''}
+  - {name: 'yum-nvidia-dgx-7', url: 'https://international.download.nvidia.com/dgx/repos/rhel7/', base: '/dgx/repos/rhel7/', gpg: ''}
+  - {name: 'yum-nvidia-dgx-7-updates', url: 'https://international.download.nvidia.com/dgx/repos/rhel7-updates/', base: '/dgx/repos/rhel7-updates/',  gpg: ''}
+  - {name: 'yum-nvidia-docker', url: 'https://nvidia.github.io/nvidia-docker/centos7/x86_64', base: '/centos7/x86_64',  gpg: ''}
+  - {name: 'yum-nvidia-ml', url: 'https://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/', base: '/compute/machine-learning/repos/rhel7/x86_64/',  gpg: ''} 
+
 
   # - {tar_name: "registry", name: "registry", version: "2.7", repo: "docker.io"}
   # - {tar_name: "k8s-helm", name: "lachlanevenson/k8s-helm", version: "v3.4.1", repo: "docker.io"}
