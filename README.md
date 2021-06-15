@@ -1,7 +1,22 @@
 # AI Devops
 AI Platform Installation Automation 
 
+## Nexus Server Setup
 Scripts will prepare nexus offline for Kubenetes installations
+
+./nexus/scripts/setup.sh
+./nexus/scripts/configure.sh [password here]
+
+## Nexus offline Server Setup
+
+- create the tar /data folder
+tar -cvzf nexus_data.tgz /data 
+
+- from offline server run following 
+./nexus/scripts/setup.sh
+tar -xvzf nexus_data.tgz 
+
+
 
 # add default gate way - flannel is failing because of the default gateway is not defined
 

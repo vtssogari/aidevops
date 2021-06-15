@@ -7,20 +7,20 @@ SCRIPT_NAME=dockerRepositories
 USER=admin
 DEFAULT_PASSWORD=admin123 # do not change - required for boot up
 PASSWORD=$1 # set this password to what you want it to be
+EMAIL=admin@fda.gov 
 
 # write out the Groovy script for configuring the Nexus repository manager
 # note the \n's are required for JSON payloads
 cat <<EOF > ${GROOVY_SCRIPT}
 {
 "name": "${SCRIPT_NAME}",
-"content": "
-import groovy.json.JsonOutput \n
+"content": "import groovy.json.JsonOutput \n
 import org.sonatype.nexus.security.realm.RealmManager \n
 import org.sonatype.nexus.blobstore.api.BlobStoreManager \n
 def user = security.securitySystem.getUser('admin') \n
-user.setEmailAddress('{{ EMAIL }}') \n
+user.setEmailAddress('${EMAIL}') \n
 security.securitySystem.updateUser(user) \n
-security.securitySystem.changePassword('admin','{{ PASSWORD }}') \n
+security.securitySystem.changePassword('admin','${PASSWORD}') \n
 log.info('default password for admin changed') \n
 
 //enable Docker Bearer Token \n
@@ -35,13 +35,7 @@ repository.createDockerHosted('docker-internal', null, null) \n
 
 // create proxy repo of Docker Hub and enable v1 to get search to work \n
 // no ports since access is only indirectly via group \n
-repository.createDockerProxy('docker-hub', 'https://registry-1.docker.io', 'HUB',                          // indexType \n
-                            null,                           // indexUrl \n
-                            null,                           // httpPort \n
-                            null,                           // httpsPort \n
-                            BlobStoreManager.DEFAULT_BLOBSTORE_NAME, // blobStoreName \n
-                            true, // strictContentTypeValidation \n
-                            true); \n
+repository.createDockerProxy('docker-hub','https://registry-1.docker.io', 'HUB',null,null,null,BlobStoreManager.DEFAULT_BLOBSTORE_NAME,true,true); \n
 
 // create group and allow access via https \n
 def groupMembers = ['docker-hub', 'docker-internal'] \n
@@ -53,7 +47,7 @@ repository.createRawHosted('http-hosted', BlobStoreManager.DEFAULT_BLOBSTORE_NAM
 log.info('Script http-hosted completed successfully'); \n
 
 // setup pypi repo \n
-repository.createPyPiProxy('pypi-proxy', "https://pypi.org", BlobStoreManager.DEFAULT_BLOBSTORE_NAME, true); \n
+repository.createPyPiProxy('pypi-proxy', 'https://pypi.org', BlobStoreManager.DEFAULT_BLOBSTORE_NAME, true); \n
 repository.createPyPiGroup('python-repo', ['pypi-proxy'], BlobStoreManager.DEFAULT_BLOBSTORE_NAME); \n
 log.info('Script python-repo completed successfully'); \n
 
@@ -79,9 +73,7 @@ log.info('Script yum proxy repo completed successfully'); \n
 EOF
 
 # upload the Groovy script
-curl -v -u ${USER}:${DEFAULT_PASSWORD} -X POST --header 'Content-Type: application/json' \
-"${BASE_URL}/service/rest/v1/script" \
--d @${GROOVY_SCRIPT}
+curl -v -u ${USER}:${DEFAULT_PASSWORD} -X POST --header 'Content-Type: application/json' "${BASE_URL}/service/rest/v1/script" -d @${GROOVY_SCRIPT}
 
 # run the Groovy script
 curl -v -X POST -u ${USER}:${DEFAULT_PASSWORD} --header "Content-Type: text/plain" "${BASE_URL}/service/rest/v1/script/${SCRIPT_NAME}/run"
