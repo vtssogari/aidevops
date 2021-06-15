@@ -5,6 +5,8 @@ AI Platform Installation Automation
 Scripts will prepare nexus offline for Kubenetes installations
 ```
 ./nexus/scripts/setup.sh
+
+ansible-playbook -i inventory playbook-bootstrap.yml # creates new configure.sh 
 ./nexus/scripts/configure.sh [password here]
 ```
 ## Nexus offline Server Setup

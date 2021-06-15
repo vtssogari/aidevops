@@ -1,6 +1,7 @@
 ---
 # tasks file for nexus
-- name: create configure script and execute
+- name: configure server
   template:
-    src: pip.conf.j2
-    dest: ~/.config/pip/pip.conf
+    src: configure.sh.j2
+    dest: "{{ role_path }}/../../scripts/configure.sh"
+    mode: 0755

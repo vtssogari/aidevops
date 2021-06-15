@@ -1,0 +1,10 @@
+---
+- name: configure nexus repos
+  hosts: nexus
+  vars:
+    script_name: "initNexusScript"
+    DEFAULT_PASSWORD: "admin123"
+    NEW_PASSWORD: "$1"
+    EMAIL: "admin@admin.com"
+  roles: 
+    - nexus
