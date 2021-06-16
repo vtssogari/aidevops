@@ -61,9 +61,9 @@ repository.createYumProxy('yum-nvidia-container-runtime', 'https://nvidia.github
 repository.createYumProxy('yum-nvidia-docker', 'https://nvidia.github.io/nvidia-docker/centos8/x86_64'); \n
 repository.createYumProxy('yum-nvidia-ml', 'https://developer.download.nvidia.com/compute/machine-learning/repos/rhel8/x86_64/'); \n
 
-repository.createYumProxy('yum-centos', 'http://mirror.vtti.vt.edu/centos/8/BaseOS/x86_64/'); \n
-repository.createYumProxy('yum-centos-extras', 'http://mirror.vtti.vt.edu/centos/8/extras/x86_64/'); \n
-repository.createYumProxy('yum-centosplus', 'http://mirror.vtti.vt.edu/centos/8/centosplus/x86_64/'); \n
+repository.createYumProxy('yum-centos', 'http://mirror.vtti.vt.edu/centos/8/BaseOS/x86_64/os'); \n
+repository.createYumProxy('yum-centos-extras', 'http://mirror.vtti.vt.edu/centos/8/extras/x86_64/os'); \n
+repository.createYumProxy('yum-centosplus', 'http://mirror.vtti.vt.edu/centos/8/centosplus/x86_64/os'); \n
 
 log.info('Script yum proxy repo completed successfully'); \n
 ",
