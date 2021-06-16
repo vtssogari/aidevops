@@ -23,6 +23,13 @@ docker_images:
   - {tar_name: "flannel", name: "coreos/flannel", version: "v0.14.0", repo: "quay.io"}
   - {tar_name: "controller", name: "ingress-nginx/controller", version: "v0.46.0", repo: "k8s.gcr.io"}
   - {tar_name: "kube-webhook-certgen", name: "jettech/kube-webhook-certgen", version: "v1.5.1", repo: "docker.io"}
+  - {tar_name: "kube-apiserver", name: "kube-apiserver", version: "v1.21.1", repo: "k8s.gcr.io"}
+  - {tar_name: "kube-controller-manager", name: "kube-controller-manager", version: "v1.21.1", repo: "k8s.gcr.io"}
+  - {tar_name: "kube-scheduler", name: "kube-scheduler", version: "v1.21.1", repo: "k8s.gcr.io"}
+  - {tar_name: "kube-proxy", name: "kube-proxy", version: "v1.21.1", repo: "k8s.gcr.io"}
+  - {tar_name: "pause", name: "pause", version: "3.4.1", repo: "k8s.gcr.io"}
+  - {tar_name: "etcd", name: "etcd", version: "3.4.13-0", repo: "k8s.gcr.io"}
+  - {tar_name: "coredns", name: "coredns/coredns", version: "v1.8.0", repo: "k8s.gcr.io"}
 
 yum_RHEL7_os_repos:
   - {name: 'yum-centos', url: 'http://mirror.vtti.vt.edu/centos/7.9.2009/os/x86_64/', base: '/centos/7.9.2009/os/x86_64'}

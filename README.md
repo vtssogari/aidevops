@@ -49,9 +49,12 @@ sudo kubeadm init --pod-network-cidr=10.244.0.0/16
 
 ```
 sudo ip route add default via 192.168.56.1
-
 ```
 
+Create a file named /etc/sysconfig/network-scripts/route-eth0
+```
+
+```
 ## nginx controller
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.47.0/deploy/static/provider/baremetal/deploy.yaml
 
