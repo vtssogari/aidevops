@@ -17,7 +17,7 @@
   copy:    
     dest: /etc/yum.repos.d/os.repo
     content: |
-          {% for item in yum_repos %}
+          {% for item in yum_os_repos %}
           [{{ item.name }}]
           name={{ item.name }}
           baseurl={{ nexus_url_base }}/repository/{{ item.name }}/
