@@ -32,16 +32,24 @@ ansible-playbook -i inventory playbook-docker.yml
 ansible-playbook -i inventory playbook-pypi.yml
 ```
 
-## add default gate way - flannel is failing because of the default gateway is not defined
+## Installing kubeadm, kubectl
 
 ```
-[root@rhel7 ~]# cat /etc/sysconfig/network
-GATEWAY="10.1.1.1"
-[root@rhel7 ~]# systemctl restart network
-[root@rhel7 ~]# routel | grep default
-        default          10.1.1.1                   static          enp0s3 
-        default        unreachable                   kernel              lo unspec
-        default        unreachable                   kernel    
+sudo yum install -y kubeadm kubectl
+```
+
+## Deploying Kubernetes cluster 
+
+```
+sudo kubeadm init --pod-network-cidr=10.244.0.0/16
+
+```
+* If error, "cannot use "0.0.0.0" as the bind address for the API Server", then 
+*  add default gate way - flannel is failing because of the default gateway is not defined
+
+```
+sudo ip route add default via 192.168.56.1
+
 ```
 
 ## nginx controller
