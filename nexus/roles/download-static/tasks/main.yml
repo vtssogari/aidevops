@@ -13,7 +13,7 @@
   loop: "{{ binary_files }}"
 - name: Push file to nexus
   uri:
-    url: "{{ nexus_url }}{{ item.directory }}/{{ item.url }}"
+    url: "{{ nexus_url }}{{ item.directory }}/{{ item.file_name }}"
     method: PUT
     src: "{{ download_folder }}/{{ item.file_name }}"
     user: "{{ user }}"
@@ -23,4 +23,4 @@
       Content-Type: application/octet-stream  
     status_code:
       - 201
-    loop: "{{ binary_files }}"
+  loop: "{{ binary_files }}"

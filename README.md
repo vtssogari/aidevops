@@ -30,6 +30,7 @@ ansible-playbook -i inventory playbook-bootstrap.yml
 ansible-playbook -i inventory playbook-yum.yml
 ansible-playbook -i inventory playbook-docker.yml
 ansible-playbook -i inventory playbook-pypi.yml
+ansible-playbook -i inventory playbook-static-file.yml
 ```
 
 ## Installing kubeadm, kubectl
@@ -42,7 +43,6 @@ sudo yum install -y kubeadm kubectl
 
 ```
 sudo kubeadm init --pod-network-cidr=10.244.0.0/16
-
 ```
 * If error, "cannot use "0.0.0.0" as the bind address for the API Server", then 
 *  add default gate way - flannel is failing because of the default gateway is not defined
@@ -51,14 +51,25 @@ sudo kubeadm init --pod-network-cidr=10.244.0.0/16
 sudo ip route add default via 192.168.56.1
 ```
 
-Create a file named /etc/sysconfig/network-scripts/route-eth0
+### Create a file named /etc/sysconfig/network-scripts/route-eth0
 ```
 
 ```
+
+### kubectl client enable 
+```
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
+
 ## nginx controller
+
+```
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.47.0/deploy/static/provider/baremetal/deploy.yaml
 
 kubectl apply -f http://nexus:8081/repository/http-hosted/kubernetes/ingress-nginx/controller-v0.47.0/deploy/static/provider/cloud/deploy.yaml
+```
 
 ##
 

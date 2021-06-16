@@ -3,12 +3,8 @@
 - name: Download and upload installation files to nexus
   hosts: nexus 
   vars: 
-    helm_version: "v3.4.1"
-    cni_version: "v0.8.7"
-
-    kube_version: "v1.18.9"
-    download_folder: /home/vtssogari/aidevops/nexus/downloads
-    nexus_url: "http://nexus:8081/repository/http-hosted/"
+    download_folder: /home/osaradmin/aidevops/nexus/downloads
+    nexus_url: "http://{{ nexus }}:8081/repository/http-hosted/"
     user: "admin"
     password: "password123"
   roles: 
