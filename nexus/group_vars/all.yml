@@ -16,6 +16,7 @@ binary_files:
   - { file_name: "nvidia-docker",                   url: "https://raw.githubusercontent.com/NVIDIA/nvidia-docker/master/nvidia-docker", directory: "/NVIDIA/nvidia-docker/master" }
   - { file_name: "deploy.yaml",                     url: "https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.47.0/deploy/static/provider/baremetal/deploy.yaml", directory: "/kubernetes/ingress-nginx/controller-v0.47.0/deploy/static/provider/baremetal" }
   - { file_name: "kube-flannel.yml",                url: "https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml", directory: "/coreos/flannel/master/Documentation/" }
+  - { file_name: "recommended.yaml",                url: "https://raw.githubusercontent.com/kubernetes/dashboard/v2.2.0/aio/deploy/recommended.yaml", directory: "/kubernetes/dashboard/v2.2.0/aio/deploy/" }
 
 docker_images:
   - {tar_name: "dashboard", name: "kubernetesui/dashboard", version: "v2.2.0", repo: "docker.io"}
