@@ -154,7 +154,7 @@ while ! kustomize build example | kubectl apply -f -; do echo "Retrying to apply
 ```
 
 ##
-
+```
 sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address=192.168.1.193
 
 Your Kubernetes control-plane has initialized successfully!
@@ -174,7 +174,7 @@ Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
   https://kubernetes.io/docs/concepts/cluster-administration/addons/
 
 Then you can join any number of worker nodes by running the following on each as root:
-
+```
 
 # Disable Subscription Manager and install docker 
 ```
