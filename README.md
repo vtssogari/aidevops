@@ -341,9 +341,8 @@ from virtualbox
 docker images --format "{{.Repository}} {{.Tag}} {{.ID}}" | tr -c "a-z A-Z0-9_.\n-" "%" | while read REPOSITORY TAG IMAGE_ID
 do
   echo "== Saving $REPOSITORY $TAG $IMAGE_ID =="
-  docker  save   -o /path/to/save/$REPOSITORY-$TAG-$IMAGE_ID.tar $IMAGE_ID
+  docker save -o $REPOSITORY-$TAG-$IMAGE_ID.tar $IMAGE_ID
 done
-docker images --format "{{.Repository}} {{.Tag}} {{.ID}}" > mydockersimages.list
 ```
 
 In offline server
