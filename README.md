@@ -118,6 +118,14 @@ spec:
 
 ## deploy ELK application 
 
+## deploy kubeflow
+
+get kustomize and install
+```
+wget https://github.com/kubernetes-sigs/kustomize/releases/download/v3.2.0/kustomize_3.2.0_linux_amd64
+sudo cp kustomize_3.2.0_linux_amd64 /usr/local/bin/kustomize
+```
+
 ##
 
 sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address=192.168.1.193
@@ -150,7 +158,3 @@ sudo yum install -y docker-ce docker-ce-cli containerd.io
 sudo systemctl start docker 
 sudo systemctl enable docker 
 ```
-
-
-
-eyJhbGciOiJSUzI1NiIsImtpZCI6IkNHRnlacmpmWVI3RnozanNjU05kQXFDRUd1QUZnd28waS03czdpSDU2UGsifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlcm5ldGVzLWRhc2hib2FyZCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJhZG1pbi11c2VyLXRva2VuLWY4am1rIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQubmFtZSI6ImFkbWluLXVzZXIiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC51aWQiOiIzNTVmZGRkMC02MDU1LTQ0MGYtOTRhOS1hY2IxYTE1YmQ5MDEiLCJzdWIiOiJzeXN0ZW06c2VydmljZWFjY291bnQ6a3ViZXJuZXRlcy1kYXNoYm9hcmQ6YWRtaW4tdXNlciJ9.EinrgN6jG95WW15CV3cOvvRCWvK_l1fu9OQaOMNR7yDU-l9v-_5Eeedrw4fIaLRdbUpwyQUP2-NvCOfjLarwVO2qSXdEHfJQXuTF5fVrRKHhafSj3YoalOcM2IJlrZ2pid_gh2td2Y9Wo2bpwO6a9R6EjQOE8g9WJYeFZ0H75xFPwX-QSVGsUNhes_sNgkql-c55U93d8aDPV2rfpUrWQr_hHfk4fBubuz9B8yfNYYGOeC1W6rp4P0j6dn_6Bbt_LhxJepX0Mxj9E5jFO9aSOsoWwmX2k9PCTHVQpd3PQIgc98bsGE4tbEqwpXD92vRkwq9Cp02xFH4b5t6lMnJCag
