@@ -338,10 +338,16 @@ while ! kustomize build example | kubectl apply -f -; do echo "Retrying to apply
 
 from virtualbox
 ```
-docker save $(docker images -q) -o images.tar
+docker images --format "{{.Repository}} {{.Tag}} {{.ID}}" | tr -c "a-z A-Z0-9_.\n-" "%" | while read REPOSITORY TAG IMAGE_ID
+do
+  echo "== Saving $REPOSITORY $TAG $IMAGE_ID =="
+  docker  save   -o /path/to/save/$REPOSITORY-$TAG-$IMAGE_ID.tar $IMAGE_ID
+done
+docker images --format "{{.Repository}} {{.Tag}} {{.ID}}" > mydockersimages.list
 ```
 
-to offline server
+In offline server
 ```
-docker load -i images.tar
+ls -1 *.tar | xargs --no-run-if-empty -L 1 docker load -i
+
 ```
