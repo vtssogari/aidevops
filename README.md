@@ -194,6 +194,45 @@ quay.io/coreos/etcd                  v3.4.3              a0b920cf970d        20 
 ```
 # All the docker images for Kubeflow 
 ```
+REPOSITORY                                                                      TAG                                        IMAGE ID            CREATED             SIZE
+python                                                                          3.7                                        5368dae25712        35 hours ago        877MB
+mpioperator/mpi-operator                                                        latest                                     cc4ca76c8279        2 days ago          60.5MB
+istio/proxyv2                                                                   1.9.5                                      89aff37ea4a7        6 weeks ago         276MB
+istio/pilot                                                                     1.9.5                                      7d14cde31564        6 weeks ago         213MB
+gcr.io/ml-pipeline/metadata-envoy                                               1.5.0                                      946551813998        2 months ago        245MB
+gcr.io/ml-pipeline/cache-deployer                                               1.5.0                                      31c6b8a1eada        2 months ago        1.73GB
+gcr.io/ml-pipeline/scheduledworkflow                                            1.5.0                                      fe8bdc918213        2 months ago        110MB
+public.ecr.aws/j1r0q0g6/notebooks/volumes-web-app                               v1.3.0-rc.1                                89a72e9937f4        2 months ago        164MB
+public.ecr.aws/j1r0q0g6/notebooks/jupyter-web-app                               v1.3.0-rc.1                                c6b869180bd0        2 months ago        164MB
+public.ecr.aws/j1r0q0g6/notebooks/tensorboards-web-app                          v1.3.0-rc.1                                12c7cca2cb13        2 months ago        163MB
+public.ecr.aws/j1r0q0g6/notebooks/central-dashboard                             v1.3.0-rc.1                                dc6f115a691d        2 months ago        203MB
+public.ecr.aws/j1r0q0g6/notebooks/access-management                             v1.3.0-rc.1                                7727002de274        2 months ago        64MB
+public.ecr.aws/j1r0q0g6/notebooks/notebook-controller                           v1.3.0-rc.1                                c61c9f542d8c        2 months ago        58.3MB
+quay.io/jetstack/cert-manager-cainjector                                        v1.3.1                                     394d99f56897        2 months ago        47.7MB
+quay.io/jetstack/cert-manager-controller                                        v1.3.1                                     7ad279b7cce9        2 months ago        64MB
+quay.io/jetstack/cert-manager-webhook                                           v1.3.1                                     a4c219b364a0        2 months ago        50.1MB
+k8s.gcr.io/sig-storage/nfs-subdir-external-provisioner                          v4.0.2                                     932b0bface75        2 months ago        43.8MB
+kubeflow/mxnet-operator                                                         v1.1.0                                     9863e44e3a08        3 months ago        971MB
+kubeflowkatib/katib-ui                                                          v0.11.0                                    aaf8228a161f        3 months ago        82.2MB
+kubeflowkatib/katib-db-manager                                                  v0.11.0                                    f54bf79113dc        3 months ago        27.4MB
+public.ecr.aws/j1r0q0g6/training/tf-operator                                    cd2fc1ff397b1f349f68524f4abd5013a32e3033   b54e1718135c        3 months ago        65.7MB
+k8s.gcr.io/pause                                                                3.4.1                                      0f8457a4c2ec        5 months ago        683kB
+gcr.io/tfx-oss-public/ml_metadata_store_server                                  0.25.1                                     66134141c949        6 months ago        76.5MB
+gcr.io/knative-releases/knative.dev/eventing/cmd/in_memory/channel_controller   <none>                                     381aad829838        7 months ago        63.7MB
+gcr.io/knative-releases/knative.dev/eventing/cmd/controller                     <none>                                     7f61334a0d64        7 months ago        66.9MB
+gcr.io/knative-releases/knative.dev/eventing/cmd/mtbroker/ingress               <none>                                     46dea7cae0ef        7 months ago        63.6MB
+gcr.io/knative-releases/knative.dev/eventing/cmd/webhook                        <none>                                     ae423bb94d06        7 months ago        65MB
+gcr.io/knative-releases/knative.dev/eventing/cmd/mtchannel_broker               <none>                                     6e319d576a4f        7 months ago        63.4MB
+gcr.io/knative-releases/knative.dev/eventing/cmd/mtbroker/filter                <none>                                     f427a9b9f30e        7 months ago        63.6MB
+gcr.io/knative-releases/knative.dev/eventing/cmd/in_memory/channel_dispatcher   <none>                                     690e3e3d1af0        7 months ago        64.7MB
+gcr.io/knative-releases/knative.dev/serving/cmd/webhook                         <none>                                     c24639c44057        8 months ago        64MB
+gcr.io/knative-releases/knative.dev/serving/cmd/controller                      <none>                                     59a625af711a        8 months ago        69MB
+gcr.io/knative-releases/knative.dev/serving/cmd/autoscaler                      <none>                                     c97f24221fda        8 months ago        63.8MB
+gcr.io/knative-releases/knative.dev/serving/cmd/activator                       <none>                                     e1f3cb67a23e        8 months ago        63.6MB
+gcr.io/knative-releases/knative.dev/net-istio/cmd/controller                    <none>                                     adcff15bf30f        9 months ago        66MB
+gcr.io/knative-releases/knative.dev/net-istio/cmd/webhook                       <none>                                     2850f040eaf2        9 months ago        60MB
+quay.io/dexidp/dex                                                              v2.24.0                                    bb0b95a82a8a        13 months ago       34.2MB
+metacontroller/metacontroller                                                   v0.3.0                                     5f0e4bc196e2        2 years ago         97.5MB
 
 ```
 # Disable Subscription Manager and install docker 
