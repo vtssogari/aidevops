@@ -120,10 +120,37 @@ spec:
 
 ## deploy kubeflow
 
-get kustomize and install
+1. get kustomize and install
 ```
 wget https://github.com/kubernetes-sigs/kustomize/releases/download/v3.2.0/kustomize_3.2.0_linux_amd64
+chmod +x kustomize_3.2.0_linux_amd64
 sudo cp kustomize_3.2.0_linux_amd64 /usr/local/bin/kustomize
+```
+
+2. clone kubeflow manifest 
+```
+git clone https://github.com/kubeflow/manifests.git
+cd manifests
+
+```
+3. change the default password for dex
+
+```
+pip3 install passlib bcrypt
+python3 -c 'from passlib.hash import bcrypt; import getpass; print(bcrypt.using(rounds=12, ident="2y").hash(getpass.getpass()))'
+```
+4. Edit dex/base/config-map.yaml and fill the relevant field with the hash of the password you chose:
+```
+...
+  staticPasswords:
+  - email: user@example.com
+    hash: <enter the generated hash here>
+```
+5. Install Kubeflow components
+
+```
+while ! kustomize build example | kubectl apply -f -; do echo "Retrying to apply resources"; sleep 10; done
+
 ```
 
 ##
@@ -147,8 +174,6 @@ Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
   https://kubernetes.io/docs/concepts/cluster-administration/addons/
 
 Then you can join any number of worker nodes by running the following on each as root:
-
-sudo kubeadm join 192.168.1.193:6443 --token xcf0du.mxtapu52ck85aaaw --discovery-token-ca-cert-hash sha256:1c6a9aa58b286bb483276ac893daf29c3f1ab8ab926dc02a30853189ec37bb0a
 
 
 # Disable Subscription Manager and install docker 
