@@ -176,6 +176,26 @@ Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
 Then you can join any number of worker nodes by running the following on each as root:
 ```
 
+# All the docker images for Kubernetes 1.21
+```
+REPOSITORY                           TAG                 IMAGE ID            CREATED             SIZE
+k8s.gcr.io/kube-apiserver            v1.21.2             106ff58d4308        8 days ago          126MB
+k8s.gcr.io/kube-proxy                v1.21.2             a6ebd1c1ad98        8 days ago          131MB
+k8s.gcr.io/kube-controller-manager   v1.21.2             ae24db9aa2cc        8 days ago          120MB
+k8s.gcr.io/kube-scheduler            v1.21.2             f917b8c8f55b        8 days ago          50.6MB
+kubernetesui/dashboard               v2.3.1              e1482a24335a        8 days ago          220MB
+quay.io/coreos/flannel               v0.14.0             8522d622299c        5 weeks ago         67.9MB
+k8s.gcr.io/pause                     3.4.1               0f8457a4c2ec        5 months ago        683kB
+k8s.gcr.io/coredns/coredns           v1.8.0              296a6d5035e2        8 months ago        42.5MB
+kubernetesui/metrics-scraper         v1.0.6              48d79e554db6        8 months ago        34.5MB
+k8s.gcr.io/etcd                      3.4.13-0            0369cf4303ff        10 months ago       253MB
+quay.io/coreos/etcd                  v3.4.3              a0b920cf970d        20 months ago       83.6MB
+
+```
+# All the docker images for Kubeflow 
+```
+
+```
 # Disable Subscription Manager and install docker 
 ```
 sudo subscription-manager config --rhsm.manage_repos=0
