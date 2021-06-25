@@ -242,3 +242,87 @@ sudo yum install -y docker-ce docker-ce-cli containerd.io
 sudo systemctl start docker 
 sudo systemctl enable docker 
 ```
+
+# install online kubenernetes and kubeflow 
+
+```
+
+sudo yum install -y kubeadm kubectl
+cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-\$basearch
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+exclude=kubelet kubeadm kubectl
+EOF
+
+sudo setenforce 0
+sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
+sudo yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+sudo systemctl enable --now kubelet
+sudo kubeadm init --pod-network-cidr=10.244.0.0/16
+sudo rm -f /var/lib/etcd
+
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+kubectl taint nodes --all node-role.kubernetes.io/master-
+kubectl apply -f https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.3.1/aio/deploy/recommended.yaml
+
+
+
+# install NFS server
+
+sudo yum install nfs-utils rpcbind
+sudo systemctl enable nfs-server
+sudo systemctl enable rpcbind
+sudo systemctl enable nfs-lock
+systemctl enable nfs-idmap
+sudo systemctl start rpcbind
+sudo systemctl start nfs-server
+sudo systemctl start nfs-lock
+sudo systemctl start nfs-idmap
+sudo systemctl status nfs
+sudo mkdir /data
+sudo chmod 1777 /data
+
+# edit here ####
+
+sudo vim /etc/exports
+
+/data *(rw)
+
+
+sudo exportfs -r
+sudo systemctl restart nfs-server
+sudo chown nfsnobody: /data
+
+# install nfs provisioner
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+chmod 700 get_helm.sh
+./get_helm.sh
+helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
+ip add
+helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs-subdir-external-provisioner  --set nfs.server=192.168.1.216     --set nfs.path=/data
+kubectl patch storageclass managed-nfs-storage -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+
+# install Kubeflow
+
+wget https://github.com/kubernetes-sigs/kustomize/releases/download/v3.2.0/kustomize_3.2.0_linux_amd64
+chmod +x kustomize_3.2.0_linux_amd64
+sudo cp kustomize_3.2.0_linux_amd64 /usr/local/bin/kustomize
+rm kustomize_3.2.0_linux_amd64 
+
+
+git clone https://github.com/kubeflow/manifests.git
+cd manifests/
+while ! kustomize build example | kubectl apply -f -; do echo "Retrying to apply resources"; sleep 10; done
+
+
+
+```
