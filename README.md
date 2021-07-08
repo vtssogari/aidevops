@@ -345,3 +345,40 @@ In offline server
 ls -1 *.tar | xargs --no-run-if-empty -L 1 docker load -i
 
 ```
+
+
+
+```
+docker pull public.ecr.aws/j1r0q0g6/notebooks/notebook-servers/jupyter-scipy:v1.3.1-rc.0
+docker pull public.ecr.aws/j1r0q0g6/notebooks/notebook-servers/jupyter-tensorflow-full:v1.3.1-rc.0
+docker pull public.ecr.aws/j1r0q0g6/notebooks/notebook-servers/jupyter-tensorflow-cuda-full:v1.3.1-rc.0
+docker pull public.ecr.aws/j1r0q0g6/notebooks/notebook-servers/jupyter-pytorch-full:v1.3.1-rc.0
+docker pull public.ecr.aws/j1r0q0g6/notebooks/notebook-servers/jupyter-pytorch-cuda-full:v1.3.1-rc.0
+
+public.ecr.aws/j1r0q0g6/notebooks/notebook-servers/jupyter-tensorflow-cuda-full   v1.3.1-rc.0         ce47ecc294d8
+public.ecr.aws/j1r0q0g6/notebooks/notebook-servers/jupyter-pytorch-cuda-full      v1.3.1-rc.0         a16d19085c24
+public.ecr.aws/j1r0q0g6/notebooks/notebook-servers/jupyter-tensorflow-full        v1.3.1-rc.0         ccd558746524
+public.ecr.aws/j1r0q0g6/notebooks/notebook-servers/jupyter-pytorch-full           v1.3.1-rc.0         8bab4641c5ce
+public.ecr.aws/j1r0q0g6/notebooks/notebook-servers/jupyter-scipy                  v1.3.1-rc.0         cbb739a1b555
+
+
+docker save -o ce47ecc294d8.tar public.ecr.aws/j1r0q0g6/notebooks/notebook-servers/jupyter-scipy:v1.3.1-rc.0
+docker save -o a16d19085c24.tar public.ecr.aws/j1r0q0g6/notebooks/notebook-servers/jupyter-tensorflow-full:v1.3.1-rc.0
+docker save -o ccd558746524.tar public.ecr.aws/j1r0q0g6/notebooks/notebook-servers/jupyter-tensorflow-cuda-full:v1.3.1-rc.0
+docker save -o 8bab4641c5ce.tar public.ecr.aws/j1r0q0g6/notebooks/notebook-servers/jupyter-pytorch-full:v1.3.1-rc.0
+docker save -o cbb739a1b555.tar public.ecr.aws/j1r0q0g6/notebooks/notebook-servers/jupyter-pytorch-cuda-full:v1.3.1-rc.0
+
+
+docker load -i ce47ecc294d8.tar
+docker load -i a16d19085c24.tar
+docker load -i ccd558746524.tar
+docker load -i 8bab4641c5ce.tar
+docker load -i cbb739a1b555.tar
+
+docker tag ce47ecc294d8 public.ecr.aws/j1r0q0g6/notebooks/notebook-servers/jupyter-scipy:v1.3.1-rc.0
+docker tag a16d19085c24 public.ecr.aws/j1r0q0g6/notebooks/notebook-servers/jupyter-tensorflow-full:v1.3.1-rc.0
+docker tag ccd558746524 public.ecr.aws/j1r0q0g6/notebooks/notebook-servers/jupyter-tensorflow-cuda-full:v1.3.1-rc.0
+docker tag 8bab4641c5ce public.ecr.aws/j1r0q0g6/notebooks/notebook-servers/jupyter-pytorch-full:v1.3.1-rc.0
+docker tag cbb739a1b555 public.ecr.aws/j1r0q0g6/notebooks/notebook-servers/jupyter-pytorch-cuda-full:v1.3.1-rc.0
+
+```
